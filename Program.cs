@@ -15,7 +15,7 @@
             else if (key == 'r')
                 gun.Reload();
             else if (key == '+')
-                gun.SetBalls(gun.GetBalls() + PaintballGun.MAGAZINE_SIZE);
+                gun.SetBalls(gun.GetBalls() + PaintballGun.MAGAZINE_SIZE); // need to find a way to change this and utilize the += functionality
             else if (key == 'q') 
                 return;
         }
