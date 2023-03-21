@@ -33,14 +33,22 @@ class PaintballGun
 
     public bool IsEmpty() { return ballsLoaded == 0; } //redundant
 
-    public int GetBalls() { return balls; }
+    public int Balls
+    {
+        get { return balls; }
+        set
+        {
+
+        }
+    }
+    /*public int GetBalls() { return balls; }
 
     public void SetBalls(int numberOfBalls)
     {
         if (numberOfBalls > 0)
             balls = numberOfBalls;
         Reload();
-    }
+    }Replacing with a property*/
 
     public void Reload()
     {
