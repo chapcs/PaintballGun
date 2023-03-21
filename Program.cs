@@ -5,7 +5,7 @@
         PaintballGun gun = new PaintballGun();
         while (true)
         {
-            Console.WriteLine($"{gun.GetBalls()} balls, {gun.GetBallsLoaded()} loaded");
+            Console.WriteLine($"{gun.Balls} balls, {gun.GetBallsLoaded()} loaded");
             if (gun.IsEmpty())
                 Console.WriteLine("WARNING: out of ammo");
             Console.WriteLine("Space to shoot, r to reload, + to add ammo, q to quit");
@@ -15,7 +15,7 @@
             else if (key == 'r')
                 gun.Reload();
             else if (key == '+')
-                gun.SetBalls(gun.GetBalls() + PaintballGun.MAGAZINE_SIZE); // need to find a way to change this and utilize the += functionality
+                gun.Balls += PaintballGun.MAGAZINE_SIZE; 
             else if (key == 'q') 
                 return;
         }
@@ -33,22 +33,17 @@ class PaintballGun
 
     public bool IsEmpty() { return ballsLoaded == 0; } //redundant
 
+    // debug this method to understand how it works**
     public int Balls
     {
         get { return balls; }
         set
         {
-
+            if (value > 0)
+                balls = value;
+            Reload();
         }
     }
-    /*public int GetBalls() { return balls; }
-
-    public void SetBalls(int numberOfBalls)
-    {
-        if (numberOfBalls > 0)
-            balls = numberOfBalls;
-        Reload();
-    }Replacing with a property*/
 
     public void Reload()
     {
