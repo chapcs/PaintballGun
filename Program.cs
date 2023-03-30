@@ -27,18 +27,14 @@ class PaintballGun
     public const int MAGAZINE_SIZE = 16;
 
     private int balls = 0;
-    private int ballsLoaded = 0;
 
     // changed the GetBallsLoaded method to a property and use the existing field as a backing field
-    public int BallsLoaded
-    {
-        get { return ballsLoaded; }
-        set { ballsLoaded = value; }
-    }
+    // then used the 'prop' code snippet to create an auto-implemented property seen below
+    // we make the setter private below to maintain the encapsulation we had before, this is now a read-only property
+    public int BallsLoaded { get; private set; }
 
-    public bool IsEmpty() { return ballsLoaded == 0; } //redundant
+    public bool IsEmpty() { return BallsLoaded == 0; } //redundant
 
-    // debug this method to understand how it works**
     public int Balls
     {
         get { return balls; }
@@ -53,16 +49,16 @@ class PaintballGun
     public void Reload()
     {
         if (balls > MAGAZINE_SIZE)
-            ballsLoaded = MAGAZINE_SIZE;
+            BallsLoaded = MAGAZINE_SIZE;
         else
-            ballsLoaded = balls;
+            BallsLoaded = balls;
     }
 
     public bool Shoot()
     {
-        if (ballsLoaded == 0) 
+        if (BallsLoaded == 0) 
             return false;
-        ballsLoaded--;
+        BallsLoaded--;
         balls--;
         return true;
     }
