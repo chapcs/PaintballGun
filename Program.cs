@@ -5,7 +5,7 @@
         PaintballGun gun = new PaintballGun();
         while (true)
         {
-            Console.WriteLine($"{gun.Balls} balls, {gun.GetBallsLoaded()} loaded");
+            Console.WriteLine($"{gun.Balls} balls, {gun.BallsLoaded} loaded");
             if (gun.IsEmpty())
                 Console.WriteLine("WARNING: out of ammo");
             Console.WriteLine("Space to shoot, r to reload, + to add ammo, q to quit");
@@ -29,7 +29,12 @@ class PaintballGun
     private int balls = 0;
     private int ballsLoaded = 0;
 
-    public int GetBallsLoaded() { return ballsLoaded; }
+    // changed the GetBallsLoaded method to a property and use the existing field as a backing field
+    public int BallsLoaded
+    {
+        get { return ballsLoaded; }
+        set { ballsLoaded = value; }
+    }
 
     public bool IsEmpty() { return ballsLoaded == 0; } //redundant
 
