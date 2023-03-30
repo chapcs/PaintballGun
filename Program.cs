@@ -15,7 +15,7 @@
             else if (key == 'r')
                 gun.Reload();
             else if (key == '+')
-                gun.Balls += PaintballGun.MAGAZINE_SIZE; 
+                gun.Balls += gun.MagazineSize; 
             else if (key == 'q') 
                 return;
         }
@@ -24,7 +24,8 @@
 
 class PaintballGun
 {
-    public const int MAGAZINE_SIZE = 16;
+    // this was changed from a const to an auto-property as well with an assigned value at the end
+    public int MagazineSize { get; private set; } = 16;
 
     private int balls = 0;
 
@@ -36,7 +37,7 @@ class PaintballGun
     public bool IsEmpty() { return BallsLoaded == 0; } //redundant
 
     public int Balls
-    {
+    {   
         get { return balls; }
         set
         {
@@ -48,8 +49,8 @@ class PaintballGun
 
     public void Reload()
     {
-        if (balls > MAGAZINE_SIZE)
-            BallsLoaded = MAGAZINE_SIZE;
+        if (balls > MagazineSize)
+            BallsLoaded = MagazineSize;
         else
             BallsLoaded = balls;
     }
